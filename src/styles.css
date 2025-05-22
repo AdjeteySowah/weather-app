@@ -1,31 +1,4 @@
-
-   /* || HOST FONTS */
-@font-face {
-   font-family: "";
-   font-weight: 400;
-   src: url("./assets/fonts/-regular-webfont.woff2") format("woff2"),
-        url("./assets/fonts/-regular-webfont.woff") format("woff");
-   font-display: swap;
-}
-
-@font-face {
-   font-family: "";
-   font-weight: 500;
-   src: url("./assets/fonts/-medium-webfont.woff2") format("woff2"),
-        url("./assets/fonts/-medium-webfont.woff") format("woff");
-   font-display: swap;
-}
-
-@font-face {
-   font-family: "";
-   font-weight: 700;
-   src: url("./assets/fonts/-bold-webfont.woff2") format("woff2"),
-        url("./assets/fonts/-bold-webfont.woff") format("woff");
-   font-display: swap;
-}
-
-
-   /* || RESET */              /* check actual css reset files before going ahead with a project */
+/* || RESET */
 *,
 ::before,
 ::after {
@@ -44,61 +17,153 @@ body {
 }
 
 img {
-   display: inline-block;
+   display: block;
    max-width: 100%;
 }
 
-p, h1, h3, input, button {
+p,
+input {
    font: inherit;
    overflow-wrap: break-word;
 }
 
-p {
-   text-wrap: pretty;
-}
-
-h1, h3 {
+h1,
+h3 {
    text-wrap: balance;
 }
 
-#root, #__next {
+#root,
+#__next {
    isolation: isolate;
 }
 
-
-   /* || CUSTOM PROPERTIES */
+/* || CUSTOM PROPERTIES */
 :root {
    --white: rgb(255, 255, 255);
    --black: rgb(0, 0, 0);
-   --link-hover-color: rgba(255, 255, 255, 0.75);
-   --primary-gray: rgb(39, 39, 42);
-   --secondary-gray: rgba(109, 109, 121, 0.2);
-   --tertiary-gray: rgba(39, 39, 42, 0.05);
-   --faded-red: rgba(255, 0, 0, 0.25);
-   --faded-green: rgba(0, 255, 0, 0.5);
-   --green: rgb(0, 255, 0);
-   --scrollbar-thumb-color: rgba(0, 0, 0, 0.5);
+   --gray: rgb(180, 180, 180);
+   --red: rgb(255, 0, 0);
+   --sky-blue: rgb(19, 119, 232);
+   --sunrise-color-effect: rgb(217, 180, 94);
+   --shadow: rgba(0,0,0,0.5);
+   --lighter-shadow: rgba(0, 0, 0, 0.1);
+   --btn-click-effect: rgba(255, 255, 255, 0.75);
 }
 
-
-   /* || GENERAL STYLES */
+/* || GENERAL STYLES */
 body {
-   font-family: "", system-ui, serif;
-   font-weight: 400;
+   font-family: "Outfit", system-ui, sans-serif;
+   font-optical-sizing: auto;
+   font-weight: 500;
    font-size: 1.6rem;
-   height: 100vh;
-
-   display: grid;
-   grid-template-columns: repeat(9, 1fr);
-   grid-template-areas: 
-      "hd hd hd hd hd hd hd hd hd"
-      "sb sb mn mn mn mn mn mn mn"
-      "ft ft ft ft ft ft ft ft ft";
-   grid-template-rows: 10rem 1fr 5rem;
+   min-height: 100vh;
+   min-height: 100svh;
+   background: fixed linear-gradient(21deg, var(--sunrise-color-effect) 0%, var(--sky-blue) 100%);
+   color: var(--white);
 }
 
-img {
-   width: 2rem;
-   height: 2rem;
-   vertical-align: middle;
+.main-cont {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   min-height: 100vh;
+   min-height: 100svh;
+   padding: 4rem 2rem;
+}
+
+form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-bottom: 3rem;
+}
+
+.label {
+   display: block;
+   margin-bottom: 1rem;
+   font-weight: 400;
+}
+
+input[type='search'] {
+   outline: none;
+   background-color: var(--lighter-shadow);
+   border: 2px solid var(--white);
+   border-radius: 2rem;
+   padding: 0.5rem 2rem;
+   margin-bottom: 1.5rem;
+   width: 80%;
+   color: var(--white);
+}
+
+input[type='search']:focus {
+   border-color: var(--sunrise-color-effect);
+   box-shadow: none;
+}
+
+input[type='search']::placeholder {
+   font-weight: 400;
+   color: var(--gray);
+}
+
+button {
+   border: none;
+   border-radius: 2rem;
+   padding: 0.5rem 2rem;
+   height: 34.797px;
+   width: 80%;
+   color: var(--sunrise-color-effect);
+   font-weight: 900;
+}
+
+button:hover {
+   cursor: pointer;
+}
+
+.weather-condition-res {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   text-shadow: 1px 1px 2px var(--shadow);
+   flex: 1 1 auto;
+   padding: 2rem;
+   background-color: var(--lighter-shadow);
+   border-radius: 2rem;
+   width: 100%;
+}
+
+.weather-condition-res p:not(:first-of-type):not(:nth-of-type(n+5)) {
+   margin-bottom: 1rem;
+}
+
+.weather-condition-res p:not(:first-of-type):not(:nth-of-type(2)) {
+   font-size: 2rem;
+}
+
+
+.location {
+   font-size: 3rem;
+   text-align: center;
+}
+
+.temp {
+   font-weight: 700;
+   font-size: 7rem;
+}
+
+.error-msg {
+   color: var(--red);
+   font-size: 2.5rem;
+   text-align: center;
+   text-shadow: none;
+}
+
+.highlight {
+   background-color: var(--btn-click-effect);
+}
+
+@media screen and (min-width: 900px) {
+   .weather-condition-res {
+      width: 40%;
+   }
 }
