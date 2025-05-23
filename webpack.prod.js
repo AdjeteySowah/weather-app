@@ -10,24 +10,25 @@ module.exports = merge(common, {
    mode: "production",
    output: {
       filename: "main.[contenthash].js",
-      chunkFilename: "[name].[contenthash].js",
       path: path.resolve(__dirname, "dist"),
       clean: true,
    },
-   plugins: [new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" })],
+   plugins: [
+      new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" }),
+      new HtmlWebpackPlugin({
+         template: "./src/template.html",
+         minify: {
+            removeAttributeQuotes: true,
+            collapseWhitespace: true,
+            removeComments: true,
+         },
+      }),
+   ],
    optimization: {
       minimize: true,
       minimizer: [
          new CssMinimizerPlugin(),
          new TerserPlugin(),
-         new HtmlWebpackPlugin({
-            template: "./src/template.html",
-            minify: {
-               removeAttributeQuotes: true,
-               collapseWhitespace: true,
-               removeComments: true
-            }
-         }),
       ],
       splitChunks: {
          chunks: "all",
