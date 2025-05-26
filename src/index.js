@@ -109,6 +109,10 @@ const checkWeatherBtn = document.querySelector('button');
 checkWeatherBtn.addEventListener('click', highlightBtn);
 checkWeatherBtn.addEventListener('click', renderWeatherCondition);
 
+   // This is necessary because even though button type='button' is used, the keydown event, pressing Enter ignores the button type and still triggers an actual form submission
+const form = document.querySelector('form');
+form.addEventListener('submit', event => event.preventDefault());
+
 document.addEventListener('keydown', (event) => {
    const key = event.key;
    if (key === 'Enter') {
