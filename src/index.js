@@ -20,7 +20,6 @@ function getLocation() {
    } else {
       loc = `/${inputValue}`;
    }
-   // completeApiQuery = startingApiQuery + loc + date + endingApiQuery;
 }
 
 function getCurrentDate() {
